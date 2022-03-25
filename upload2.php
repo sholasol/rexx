@@ -40,20 +40,28 @@ if (isset($_POST['uploading'])) {
                             
                           //store each of the json feild as variable
                             foreach($data_array as $row){
-                                $sale_id = $row['sale_id'];
-                                $customer_name = $row['customer_name'];
-                                $customer_mail = $row['customer_mail'];
-                                $product_id = $row['product_id'];
-                                $product_name = $row['product_name'];
-                                $product_price = $row['product_price'];
-                                $sale_date = $row['sale_date'];
-                                $version = $row['version'];
+                                $title = $row['title'];
+                                $isbn = $row['isbn'];
+                                $pageCount = $row['pageCount'];
+                                $quantity = $row['quantity'];
+                                $customer = $row['customer'];
+                                $price = $row['price'];
+                                $total = $row['total'];
+                                $sold = $row['sold'];
+                                $publishedDate = $row['publishedDate'];
+                                $thumbnailUrl = $row['thumbnailUrl'];
+                                $shortDescription = $row['shortDescription'];
+                                $longDescription = $row['longDescription'];
+                                $status = $row['status'];
+                                $authors = $row['authors'];
+                                $categories = $row['categories'];
 
                                 //insert record into the database
-                                $insertRec = dbConnect()->prepare("INSERT INTO sales_record SET sale_id=?, customer_name = ?, customer_mail =?, product_id=?, product_name=?,
-                                product_price=?, sale_date=?, version=? ");
+                                $insertRec = dbConnect()->prepare("INSERT INTO sales SET title=?, isbn = ?, pageCount =?, quantity=?, customer=?,
+                                price=?, total=?, sold=?, publishedDate=?, thumbnailUrl=?, shortDescription=?, longDescription=?,
+                                status=?, authors=?,categories=? ");
 
-                                $insertRec->execute([$sale_id, $customer_name, $customer_mail, $product_id, $product_name, $product_price, $sale_date, $version]);
+                                $insertRec->execute([$title, $isbn, $pageCount, $quantity, $customer, $price, $total, $sold, $publishedDate, $thumbnailUrl, $shortDescription, $longDescription, $status, $authors, $categories]);
 
                             }
 

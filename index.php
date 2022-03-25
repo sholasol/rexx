@@ -39,12 +39,10 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col"></th>
               <th scope="col">Customer</th>
-              <th scope="col">Title</th>
-              <th scope="col">Unit Price</th>
-              <th scope="col">Qty</th>
-              <th scope="col">Total</th>
+              <th scope="col">Email</th>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
               <th scope="col">Date</th>
             </tr>
           </thead>
@@ -63,188 +61,172 @@
                elseif(!empty($cust) && empty($prod) && empty($price)){
                 $i = 0;
                 $total = 0;
-                $que = dbConnect()->prepare("SELECT * FROM sales WHERE customer LIKE '%$cust%'");
+                $que = dbConnect()->prepare("SELECT * FROM sales_record WHERE customer_name LIKE '%$cust%'");
                 $que->execute();
                 while($rw = $que->fetch()){
                     $i++;
-                    $img = $rw['thumbnailUrl'];
-                    $totqp = $rw['total'];
+                    
+                    $totqp = $rw['product_price'];
                     $total += $totqp;
                 ?>
                 <tr>
                 <td><?php echo $i ?></td>
-                <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                <td><?php echo $rw['customer']; ?></td>
-                <td><?php echo $rw['title']; ?></td>
-                <td><?php echo $rw['price']; ?></td>
-                <td><?php echo $rw['quantity']; ?></td>
-                <td><?php echo $rw['total']; ?></td>
-                <td><?php echo $rw['sold']; ?></td>
+                <td><?php echo $rw['customer_name']; ?></td>
+                <td><?php echo $rw['customer_mail']; ?></td>
+                <td><?php echo $rw['product_name']; ?></td>
+                <td><?php echo $rw['product_price']; ?></td>
+                <td><?php echo $rw['sale_date']; ?></td>
                 </tr>
                 <?php } }
                elseif(empty($cust) && !empty($prod) && empty($price)){
 
                 $i = 0;
                 $total = 0;
-                $que = dbConnect()->prepare("SELECT * FROM sales WHERE title LIKE '%$prod%'");
+                $que = dbConnect()->prepare("SELECT * FROM sales_record WHERE product_name LIKE '%$prod%'");
                 $que->execute();
                 while($rw = $que->fetch()){
                     $i++;
-                    $img = $rw['thumbnailUrl'];
-                    $totqp = $rw['total'];
+                    
+                    $totqp = $rw['product_price'];
                     $total += $totqp;
                 ?>
                 <tr>
                 <td><?php echo $i ?></td>
-                <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                <td><?php echo $rw['customer']; ?></td>
-                <td><?php echo $rw['title']; ?></td>
-                <td><?php echo $rw['price']; ?></td>
-                <td><?php echo $rw['quantity']; ?></td>
-                <td><?php echo $rw['total']; ?></td>
-                <td><?php echo $rw['sold']; ?></td>
+                <td><?php echo $rw['customer_name']; ?></td>
+                <td><?php echo $rw['customer_mail']; ?></td>
+                <td><?php echo $rw['product_name']; ?></td>
+                <td><?php echo $rw['product_price']; ?></td>
+                <td><?php echo $rw['sale_date']; ?></td>
                 </tr>
                 <?php } }
                 elseif(empty($cust) && empty($prod) && !empty($price)){
 
                     $i = 0;
                     $total = 0;
-                    $que = dbConnect()->prepare("SELECT * FROM sales WHERE price=$price");
+                    $que = dbConnect()->prepare("SELECT * FROM sales_record WHERE product_price=$price");
                     $que->execute();
                     while($rw = $que->fetch()){
                         $i++;
-                        $img = $rw['thumbnailUrl'];
-                        $totqp = $rw['total'];
+                        
+                        $totqp = $rw['product_price'];
                         $total += $totqp;
                     ?>
                     <tr>
                     <td><?php echo $i ?></td>
-                    <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                    <td><?php echo $rw['customer']; ?></td>
-                    <td><?php echo $rw['title']; ?></td>
-                    <td><?php echo $rw['price']; ?></td>
-                    <td><?php echo $rw['quantity']; ?></td>
-                    <td><?php echo $rw['total']; ?></td>
-                    <td><?php echo $rw['sold']; ?></td>
+                    <td><?php echo $rw['customer_name']; ?></td>
+                    <td><?php echo $rw['customer_mail']; ?></td>
+                    <td><?php echo $rw['product_name']; ?></td>
+                    <td><?php echo $rw['product_price']; ?></td>
+                    <td><?php echo $rw['sale_date']; ?></td>
                     </tr>
                     <?php } }
                 elseif(empty($cust) && !empty($prod) && !empty($price)){
 
                     $i = 0;
                     $total = 0;
-                    $que = dbConnect()->prepare("SELECT * FROM sales WHERE title LIKE '%$prod%' AND price=$price");
+                    $que = dbConnect()->prepare("SELECT * FROM sales_record WHERE product_name LIKE '%$prod%' AND product_price=$price");
                     $que->execute();
                     while($rw = $que->fetch()){
                         $i++;
-                        $img = $rw['thumbnailUrl'];
-                        $totqp = $rw['total'];
+                        
+                        $totqp = $rw['product_price'];
                         $total += $totqp;
                     ?>
                     <tr>
                     <td><?php echo $i ?></td>
-                    <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                    <td><?php echo $rw['customer']; ?></td>
-                    <td><?php echo $rw['title']; ?></td>
-                    <td><?php echo $rw['price']; ?></td>
-                    <td><?php echo $rw['quantity']; ?></td>
-                    <td><?php echo $rw['total']; ?></td>
-                    <td><?php echo $rw['sold']; ?></td>
+                    <td><?php echo $rw['customer_name']; ?></td>
+                    <td><?php echo $rw['customer_mail']; ?></td>
+                    <td><?php echo $rw['product_name']; ?></td>
+                    <td><?php echo $rw['product_price']; ?></td>
+                    <td><?php echo $rw['sale_date']; ?></td>
                     </tr>
                     <?php } }
                 elseif(!empty($cust) && empty($prod) && !empty($price)){
 
                     $i = 0;
                     $total = 0;
-                    $que = dbConnect()->prepare("SELECT * FROM sales WHERE customer LIKE '%$cust%' AND price=$price");
+                    $que = dbConnect()->prepare("SELECT * FROM sales_record WHERE customer_name LIKE '%$cust%' AND product_price=$price");
                     $que->execute();
                     while($rw = $que->fetch()){
                         $i++;
-                        $img = $rw['thumbnailUrl'];
-                        $totqp = $rw['total'];
+                        
+                        $totqp = $rw['product_price'];
                         $total += $totqp;
                     ?>
                     <tr>
                     <td><?php echo $i ?></td>
-                    <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                    <td><?php echo $rw['customer']; ?></td>
-                    <td><?php echo $rw['title']; ?></td>
-                    <td><?php echo $rw['price']; ?></td>
-                    <td><?php echo $rw['quantity']; ?></td>
-                    <td><?php echo $rw['total']; ?></td>
-                    <td><?php echo $rw['sold']; ?></td>
+                    <td><?php echo $rw['customer_name']; ?></td>
+                    <td><?php echo $rw['customer_mail']; ?></td>
+                    <td><?php echo $rw['product_name']; ?></td>
+                    <td><?php echo $rw['product_price']; ?></td>
+                    <td><?php echo $rw['sale_date']; ?></td>
                     </tr>
                     <?php } }
                 elseif(!empty($cust) && !empty($prod) && empty($price)){
                     $i = 0;
                     $total = 0;
-                    $que = dbConnect()->prepare("SELECT * FROM sales WHERE customer LIKE '%$cust%' AND title LIKE '%$prod%'");
+                    $que = dbConnect()->prepare("SELECT * FROM sales_record WHERE customer_name LIKE '%$cust%' AND product_name LIKE '%$prod%'");
                     $que->execute();
                     while($rw = $que->fetch()){
                         $i++;
-                        $img = $rw['thumbnailUrl'];
-                        $totqp = $rw['total'];
+                        
+                        $totqp = $rw['product_price'];
                         $total += $totqp;
                     ?>
-                    <tr>
+                   <tr>
                     <td><?php echo $i ?></td>
-                    <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                    <td><?php echo $rw['customer']; ?></td>
-                    <td><?php echo $rw['title']; ?></td>
-                    <td><?php echo $rw['price']; ?></td>
-                    <td><?php echo $rw['quantity']; ?></td>
-                    <td><?php echo $rw['total']; ?></td>
-                    <td><?php echo $rw['sold']; ?></td>
+                    <td><?php echo $rw['customer_name']; ?></td>
+                    <td><?php echo $rw['customer_mail']; ?></td>
+                    <td><?php echo $rw['product_name']; ?></td>
+                    <td><?php echo $rw['product_price']; ?></td>
+                    <td><?php echo $rw['sale_date']; ?></td>
                     </tr>
                     <?php } }
                 elseif(!empty($cust) && !empty($prod) && !empty($price)){
                 
                     $i = 0;
                     $total = 0;
-                    $que = dbConnect()->prepare("SELECT * FROM sales WHERE customer LIKE '%$cust%' AND title LIKE '%$prod%' AND price=$price");
+                    $que = dbConnect()->prepare("SELECT * FROM sales_record WHERE customer_name LIKE '%$cust%' AND product_name LIKE '%$prod%' AND product_price=$price");
                     $que->execute();
                     while($rw = $que->fetch()){
                         $i++;
-                        $img = $rw['thumbnailUrl'];
-                        $totqp = $rw['total'];
+                        
+                        $totqp = $rw['product_price'];
                         $total += $totqp;
                     ?>
                     <tr>
                     <td><?php echo $i ?></td>
-                    <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                    <td><?php echo $rw['customer']; ?></td>
-                    <td><?php echo $rw['title']; ?></td>
-                    <td><?php echo $rw['price']; ?></td>
-                    <td><?php echo $rw['quantity']; ?></td>
-                    <td><?php echo $rw['total']; ?></td>
-                    <td><?php echo $rw['sold']; ?></td>
+                    <td><?php echo $rw['customer_name']; ?></td>
+                    <td><?php echo $rw['customer_mail']; ?></td>
+                    <td><?php echo $rw['product_name']; ?></td>
+                    <td><?php echo $rw['product_price']; ?></td>
+                    <td><?php echo $rw['sale_date']; ?></td>
                     </tr>
                     <?php } }
                 }
                 else{
                 $i = 0;
                 $total = 0;
-                $que = dbConnect()->prepare("SELECT * FROM sales");
+                $que = dbConnect()->prepare("SELECT * FROM sales_record");
                 $que->execute();
                 while($rw = $que->fetch()){
                     $i++;
-                    $img = $rw['thumbnailUrl'];
-                    $totqp = $rw['total'];
+                    
+                    $totqp = $rw['product_price'];
                     $total += $totqp;
                 ?>
                 <tr>
                 <td><?php echo $i ?></td>
-                <td><img src="<?php echo $img;?>" alt="" width="50" height="50"></td>
-                <td><?php echo $rw['customer']; ?></td>
-                <td><?php echo $rw['title']; ?></td>
-                <td><?php echo $rw['price']; ?></td>
-                <td><?php echo $rw['quantity']; ?></td>
-                <td><?php echo $rw['total']; ?></td>
-                <td><?php echo $rw['sold']; ?></td>
+                <td><?php echo $rw['customer_name']; ?></td>
+                <td><?php echo $rw['customer_mail']; ?></td>
+                <td><?php echo $rw['product_name']; ?></td>
+                <td><?php echo $rw['product_price']; ?></td>
+                <td><?php echo $rw['sale_date']; ?></td>
                 </tr>
                 <?php } } ?>
                 <tr>
-                  <td colspan="6"></td>
-                  <td>
+                  <td colspan="4"></td>
+                  <td colspan="2">
                   <label class="btn btn-info"><span class="text-white">Total : <?php echo $total ?></span></label>
                   </td>
                 </tr>
